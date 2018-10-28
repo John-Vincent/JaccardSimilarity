@@ -1,6 +1,6 @@
-FILES=$(addprefix src/, $(addsuffix .class, MinHash MinHashSimilarity Preprocessing MinHashAccuracy MinHashTime LSH NearDuplicates))
+FILES=$(addprefix bin/, $(addsuffix .class, MinHash MinHashSimilarities Preprocessor MinHashAccuracy MinHashTime LSH NearDuplicates))
 
-TEST=$(addprefix test/, $(addsuffix .class, a))
+TEST=$(addprefix bin/, $(addsuffix .class, MinHashTest MinHashSimilaritiesTest ))
 
 
 .PHONY: default makebin clean
@@ -8,10 +8,14 @@ TEST=$(addprefix test/, $(addsuffix .class, a))
 default: $(FILES)
 	@echo "compilation successful"
 
-test: $(TEST)
+test: $(TEST) $(FILES)
 	@echo "test compilation successful"
 
 bin/%.class: src/%.java | makebin
+	@echo "compiling $<"
+	@javac -Werror -d bin/ -cp bin:src/ -Xlint $<
+
+bin/%.class: test/%.java | makebin
 	@echo "compiling $<"
 	@javac -Werror -d bin/ -cp bin:src/:test/ -Xlint $<
 
