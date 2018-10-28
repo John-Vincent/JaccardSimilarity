@@ -1,6 +1,6 @@
 FILES=$(addprefix bin/, $(addsuffix .class, MinHash MinHashSimilarities Preprocessor MinHashAccuracy MinHashTime LSH NearDuplicates))
 
-TEST=$(addprefix bin/, $(addsuffix .class, MinHashTest MinHashSimilaritiesTest ))
+TEST=$(addprefix bin/, $(addsuffix .class, MinHashTest MinHashSimilaritiesTest LSHTest PreprocessorTest))
 
 
 .PHONY: default makebin clean

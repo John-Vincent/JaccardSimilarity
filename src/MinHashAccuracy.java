@@ -12,7 +12,7 @@ public class MinHashAccuracy
         }
         catch(Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 
@@ -21,11 +21,12 @@ public class MinHashAccuracy
         MinHashSimilarities min = new MinHashSimilarities(folder, numPermutations);
         String[] files = min.filenames;
         double approx, exact;
+        int num = 0;
 
         for(int i = 0; i < files.length; i++)
         {
             System.out.print("comparing " + i + "/" + files.length + "\r");
-            for(int j = 0; j < files.length; j++)
+            for(int j = i+1; j < files.length; j++)
             {
                 if(i != j)
                 {
@@ -33,6 +34,7 @@ public class MinHashAccuracy
                     exact = min.exactJaccard(files[i], files[j]);
                     if(Math.abs(approx-exact) > error)
                     {
+                        num++;
                         System.out.println(files[i] + " " + files[j] + "             \n\r  epsilon " +
                             String.format("%.4f", Math.abs(approx - exact)) + " approx: " +
                             String.format("%.4f", approx) + " exact: " +
@@ -42,5 +44,6 @@ public class MinHashAccuracy
                 }
             }
         }
+        System.out.println(num + " pairs of documents had error greater than " + error);
     }
 }
