@@ -32,6 +32,7 @@ public class MinHashTime
         if (args.length < 2)
         {
             System.out.println("must provide folder, and numPermutations");
+            System.exit(-1);
         }
         try
         {

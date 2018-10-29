@@ -24,6 +24,10 @@ public class Preprocessor
         this.setReader(file, java.nio.charset.Charset.forName("UTF-8"));
     }
 
+    /**
+     * attempts to create a buffered reader with the two charactersets that i have noticed in the
+     * test files give to us
+     */
     public void setReader(File file, Charset set)
     {
         try

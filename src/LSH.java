@@ -108,6 +108,7 @@ public class LSH
             if(!name.equals(docName))
                 ans.add(name);
         }
+        java.util.Collections.sort(ans);
         return ans;
     }
 }
